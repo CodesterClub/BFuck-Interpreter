@@ -62,6 +62,7 @@ int main() {
 	int LpIndex = 0;
 	// Data array to store bfuck I/O
 	int data[32];
+	// Unsigned means that range of values stored is from 0 to 2^(n-1)
 	// Data pointer that is used to select an index from data array and operate on it.
 	unsigned int ptr = 0;
 	// Instruction pointer traverses the cmd array
