@@ -1,7 +1,6 @@
-#include <stdio.h>            // For printf() and scanf()
+#include <stdio.h>            // For printf()
 #include <stdlib.h>           // For calloc() 
 #include <string.h>           // For strlen()
-
 /* 
  * This method returns next index of an integer
  * 
