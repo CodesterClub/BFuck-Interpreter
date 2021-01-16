@@ -92,10 +92,10 @@ int main() {
 			i = LpIndex + 1;
 		}
 		else if( cmd[i] == '.' ) {
-			printf( "O> %c\n", data[ptr] );
+			printf( "%c", data[ptr] );
 		}
 		else if( cmd[i] == ',' ) {
-			scanf( "%d", &data[ptr] );
+			data[ptr] = getchar();
 		}
 	} while( cmd[i++] != '!' );
 	/* This frees up the memory allocated by calloc().
