@@ -1,6 +1,6 @@
 #include <stdio.h>            // For printf() and scanf()
-#include <stdlib.h>           // For malloc() and calloc() 
-#include <string.h>           // For strcmp() and strlen()
+#include <stdlib.h>           // For calloc() 
+#include <string.h>           // For strlen()
 
 /* This method returns next index of an integer
  * 
