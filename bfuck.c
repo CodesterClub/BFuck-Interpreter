@@ -2,7 +2,8 @@
 #include <stdlib.h>           // For calloc() 
 #include <string.h>           // For strlen()
 
-/* This method returns next index of an integer
+/* 
+ * This method returns next index of an integer
  * 
  * char *cmd creates a reference to the [0]th posn of the string 
  * passed in, which means, cmd stores the value of its memory address, 
@@ -37,7 +38,8 @@ int input( char *cmd ) {
 		// getchar() gets next character from input stream
 		cmd[i] = getchar();
 	} while( cmd[i++] != '!' );
-	/* If you didn't know, now you do. All strings must end 
+	/* 
+	 * If you didn't know, now you do. All strings must end 
 	 * with a null character in c. The beginning is marked by address 
 	 * stored in cmd. But the end must be marked by a null character. 
 	 * Otherwise two strings in memory may get mixed up. As a result, 
@@ -98,7 +100,8 @@ int main() {
 			data[ptr] = getchar();
 		}
 	} while( cmd[i++] != '!' );
-	/* This frees up the memory allocated by calloc().
+	/* 
+	 * This frees up the memory allocated by calloc().
 	 * In our case since the program ends here, free() is not necessary 
 	 * as the system deletes the memory occupied by our program once 
 	 * execution ends.
