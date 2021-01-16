@@ -105,10 +105,10 @@ int main() {
 	 * and we had huge data inout in them and we had a huge code where 
 	 * not all of them would be necessary, we will actually be wasting memory.
 	 * 
-	 * Also say we assign one array A to another array B. That means now B points 
-	 * to memory of A. But what happens to older memory of A?
+	 * Also say we assign one array B to another array A as B = A. That means 
+	 * now B points to memory of A. But what happens to older memory of A?
 	 * In java, the garbage collector clears this automatically. In c, we must 
-	 * first free A using free(A) the we must do A = B;
+	 * first free A using free(A) the we must do B = A;
 	 * 
 	 * Hence it is a good practice to free up memory when you realise you no longer 
 	 * need them in C.
