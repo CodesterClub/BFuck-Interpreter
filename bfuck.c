@@ -40,7 +40,8 @@ int input( char *cmd ) {
 	/* If you didn't know, now you do. All strings must end 
 	 * with a null character in c. The beginning is marked by address 
 	 * stored in cmd. But the end must be marked by a null character. 
-	 * Otherwise two strings in memory may get mixed up.
+	 * Otherwise two strings in memory may get mixed up. As a result, 
+	 * a string has one extra memory block at the end.
 	 */
 	cmd[i] = '\0';
 	return i - 1;
