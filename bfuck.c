@@ -1,4 +1,4 @@
-#include <stdio.h>            // For printf()
+#include <stdio.h>            // For printf() and getchar()
 #include <stdlib.h>           // For calloc() 
 #include <string.h>           // For strlen()
 /* 
