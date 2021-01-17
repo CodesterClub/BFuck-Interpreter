@@ -85,9 +85,11 @@ int main() {
 			data[ptr]--;
 		}
 		// Work incomplete from here
-		else if( cmd[i] == '[' & data[ptr] == 0 ) {
+		else if( cmd[i] == '[' ) {
 			LpIndex = i;
-			i = indexOf( cmd, ']', i + 1 ) + 1;
+			if( data[ptr] == 0 ) {
+				i = indexOf( cmd, ']', i + 1 ) + 1;
+			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
 			i = LpIndex + 1;
