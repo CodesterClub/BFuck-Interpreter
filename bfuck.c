@@ -36,6 +36,7 @@ int input( char *cmd ) {
 	do {
 		// getchar() gets next character from input stream
 		cmd[i] = getchar();
+		i++;
 	} while( cmd[i++] != '!' | cmd[i++] != '\n' );
 	/* 
 	 * If you didn't know, now you do. All strings must end 
