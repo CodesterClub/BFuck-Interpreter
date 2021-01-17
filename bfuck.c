@@ -88,7 +88,7 @@ int main() {
 		else if( cmd[i] == '[' ) {
 			LpIndex = i;
 			if( data[ptr] == 0 ) {
-				i = indexOf( cmd, ']', i + 1 ) + 1;
+				i = indexOf( cmd, ']', i + 1 );
 			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
