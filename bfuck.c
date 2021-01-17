@@ -99,7 +99,7 @@ int main() {
 			printf( "O> %c\n", data[ptr] );
 		}
 		else if( cmd[i] == ',' ) {
-			prinf( "I> " );
+			printf( "I> " );
 			data[ptr] = getchar();
 			data[ptr+1] = '\0';
 		}
