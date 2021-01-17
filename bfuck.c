@@ -62,7 +62,7 @@ int main() {
 	// Index of loop start posn in bfuck code
 	int LpIndex = 0;
 	// Data array to store bfuck I/O
-	signed char data[32];
+	signed char data[32] = {0};
 	// Unsigned means that range of values stored is from 0 to 2^(n-1), n is size in bits
 	// Data pointer that is used to select an index from data array and operate on it.
 	unsigned int ptr = 0;
