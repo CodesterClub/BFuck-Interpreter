@@ -36,7 +36,7 @@ int input( char *cmd ) {
 	do {
 		// getchar() gets next character from input stream
 		cmd[i] = getchar();
-	} while( cmd[i++] != '!' );
+	} while( cmd[i++] != '!' | cmd[i++] != '\n' );
 	/* 
 	 * If you didn't know, now you do. All strings must end 
 	 * with a null character in c. The beginning is marked by address 
