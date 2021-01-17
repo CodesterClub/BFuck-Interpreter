@@ -97,7 +97,7 @@ int main() {
 		}
 		else if( cmd[i] == ',' ) {
 			data[ptr] = getchar();
-			data[ptr+1] = 0;
+			data[ptr+1] = '\0';
 		}
 	} while( cmd[i++] != '!' );
 	/* 
