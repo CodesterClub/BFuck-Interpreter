@@ -95,9 +95,10 @@ int main() {
 			i = LpIndex + 1;
 		}
 		else if( cmd[i] == '.' ) {
-			printf( "%c", data[ptr] );
+			printf( "O> %c\n", data[ptr] );
 		}
 		else if( cmd[i] == ',' ) {
+			prinf( "I> " );
 			data[ptr] = getchar();
 			data[ptr+1] = '\0';
 		}
