@@ -36,8 +36,7 @@ int input( char *cmd ) {
 	do {
 		// getchar() gets next character from input stream
 		cmd[i] = getchar();
-		i++;
-	} while( cmd[i-1] != '!' | cmd[i-1] != '\n' );
+	} while( cmd[i++] != '\n' );
 	/* 
 	 * If you didn't know, now you do. All strings must end 
 	 * with a null character in c. The beginning is marked by address 
@@ -45,8 +44,8 @@ int input( char *cmd ) {
 	 * Otherwise two strings in memory may get mixed up. As a result, 
 	 * a string has one extra memory block at the end.
 	 */
-	cmd[i] = '\0';
-	return i - 1;
+	cmd[i--] = '\0';
+	return i;
 }
 int main() {
 	/*
@@ -102,7 +101,7 @@ int main() {
 			printf( "I> " );
 			scanf( "%d", &data[ptr] );
 		}
-	} while( cmd[i++] != '!' );
+	} while( cmd[i++] != '\0' );
 	/* 
 	 * This frees up the memory allocated by calloc().
 	 * In our case since the program ends here, free() is not necessary 
