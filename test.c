@@ -1,3 +1,4 @@
+#include <stdio.h>
 int main() {
 	char a[32];
 	a[0] = getchar();
