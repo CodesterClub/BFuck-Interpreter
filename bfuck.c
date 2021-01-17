@@ -1,4 +1,4 @@
-#include <stdio.h>            // For printf()
+#include <stdio.h>            // For printf() and getchar()
 #include <stdlib.h>           // For calloc() 
 #include <string.h>           // For strlen()
 /* 
@@ -36,7 +36,7 @@ int input( char *cmd ) {
 	do {
 		// getchar() gets next character from input stream
 		cmd[i] = getchar();
-	} while( cmd[i++] != '!' );
+	} while( cmd[i++] != '\n' );
 	/* 
 	 * If you didn't know, now you do. All strings must end 
 	 * with a null character in c. The beginning is marked by address 
@@ -44,8 +44,8 @@ int input( char *cmd ) {
 	 * Otherwise two strings in memory may get mixed up. As a result, 
 	 * a string has one extra memory block at the end.
 	 */
-	cmd[i] = '\0';
-	return i - 1;
+	cmd[i--] = '\0';
+	return i;
 }
 int main() {
 	/*
@@ -62,7 +62,7 @@ int main() {
 	// Index of loop start posn in bfuck code
 	int LpIndex = 0;
 	// Data array to store bfuck I/O
-	signed char data[32];
+	signed int data[32] = {0};
 	// Unsigned means that range of values stored is from 0 to 2^(n-1), n is size in bits
 	// Data pointer that is used to select an index from data array and operate on it.
 	unsigned int ptr = 0;
@@ -85,21 +85,23 @@ int main() {
 			data[ptr]--;
 		}
 		// Work incomplete from here
-		else if( cmd[i] == '[' & data[ptr] == 0 ) {
+		else if( cmd[i] == '[' ) {
 			LpIndex = i;
-			i = indexOf( cmd, ']', i + 1 ) + 1;
+			if( data[ptr] == 0 ) {
+				i = indexOf( cmd, ']', i + 1 ) + 1;
+			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
-			i = LpIndex + 1;
+			i = LpIndex;
 		}
 		else if( cmd[i] == '.' ) {
-			printf( "%c", data[ptr] );
+			printf( "O> %c\n", data[ptr] );
 		}
 		else if( cmd[i] == ',' ) {
-			data[ptr] = getchar();
-			data[ptr+1] = 0;
+			printf( "I> " );
+			scanf( "%d", &data[ptr] );
 		}
-	} while( cmd[i++] != '!' );
+	} while( cmd[i++] != '\0' );
 	/* 
 	 * This frees up the memory allocated by calloc().
 	 * In our case since the program ends here, free() is not necessary 
