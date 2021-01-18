@@ -1,0 +1,11 @@
+#!/bin/bash
+path="/data/data/com.termux/files/home/.gitsync"
+read -p "User: " usr
+echo "usr:$usr" > "$path"
+read -p "Password: " pass
+echo "pass:$pass" >> "$path"
+read -p "Repo: " repo
+echo "repo:$repo" >> "$path"
+git remote set-url origin https://$usr:$pass@github.com/$usr/$repo.git
+read -p "Branch: " branch
+echo "branch:$branch" >> "$path"

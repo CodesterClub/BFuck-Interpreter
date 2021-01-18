@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+echo "Pulling..."
+/data/data/com.termux/files/usr/bin/gpull
+/data/data/com.termux/files/usr/bin/gpush

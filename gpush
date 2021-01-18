@@ -1,0 +1,17 @@
+#!/data/data/com.termux/files/usr/bin/bash
+path="/data/data/com.termux/files/home/.gitsync"
+echo "GIT: Staging..."
+git add -A
+echo "Staged all"
+echo "GIT: Commiting..."
+git commit
+echo "GIT: Pushing..."
+while IFS= read -r line
+do
+    if [[ "$line" == "branch:"* ]]
+    then
+        git push origin $branch
+        exit
+    fi
+done < "$path"
+echo "ERROR: No branch initialised. RUN gitremote or gpull"

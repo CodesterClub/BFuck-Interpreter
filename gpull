@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/bash
+path="/data/data/com.termux/files/home/.gitsync"
+while IFS= read -r line
+do
+    if [[ "$line" == "branch:"* ]]
+    then
+        git pull origin $branch
+        exit
+    fi
+done < "$path"
+read -p "Branch: " branch
+echo "branch:$branch" >> "$path"
+git pull origin $branch
