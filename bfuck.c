@@ -55,7 +55,7 @@ int main() {
 	 * The 2nd argument of calloc() is the size of each memory block.
 	 * 
 	 * calloc() automatically increases no. of memory blocks as required during runtime.
-	 * C has no new keyword. Dynamic allocation if memory is done by malloc() or calloc().
+	 * C has no new keyword. Dynamic allocation of memory is done by malloc() or calloc().
 	 */
 	// Command array that takes in the bfuck code in whole
 	char *cmd = calloc( 0, sizeof( char ) );
