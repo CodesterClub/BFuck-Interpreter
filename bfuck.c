@@ -4,6 +4,7 @@
 /* 
  * This method returns next index of an integer
  * 
+ * char *cmd creates a read-only string (rather array) of characters.
  * char *cmd creates a reference to the [0]th posn of the string 
  * passed in, which means, cmd stores the value of its memory address, 
  * while *cmd stores the reference. Hence strings are passed as a 
