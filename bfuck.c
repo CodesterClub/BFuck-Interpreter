@@ -39,10 +39,11 @@ int input( char *cmd ) {
 	} while( cmd[i++] != '\n' );
 	/* 
 	 * If you didn't know, now you do. All strings must end 
-	 * with a null character in c. The beginning is marked by address 
+	 * with a null character in C. The beginning is marked by address 
 	 * stored in cmd. But the end must be marked by a null character. 
 	 * Otherwise two strings in memory may get mixed up. As a result, 
-	 * a string has one extra memory block at the end.
+	 * a string has one extra memory block at the end, making its
+	 * length l + 1.
 	 */
 	cmd[i--] = '\0';
 	return i;
