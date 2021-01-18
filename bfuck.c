@@ -19,6 +19,9 @@
  * said previously, printing cmd gives the address as a hex. printing 
  * cmd[0] gives the value at 0th. cmd[i] gives value i places beyond 
  * cmd.
+ * 
+ * NOTE that printf ( "%s", *cmd ); prints the whole string
+ * BUT printf( "%c", *cmd ); only prints the 0th character.
  */
 int indexOf( char *cmd, char el, int from ) {
 	// Usual for loop, strlen() is 'string length'
