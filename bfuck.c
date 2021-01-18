@@ -22,8 +22,6 @@
  * 
  * NOTE that printf ( "%s", cmd ); prints the whole string
  * BUT printf( "%c", *cmd ); only prints the 0th character
- * Hence, for string, we have char *str at declaration, but only str at 
- * function call.
  */
 int indexOf( char *cmd, char el, int from ) {
 	// Usual for loop, strlen() is 'string length'
