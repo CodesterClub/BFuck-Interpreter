@@ -93,6 +93,7 @@ void interpret( char *cmd ) {
 				i = closeIndex;
 				break;
 			}
+			NESTED:
 			// If nested bf loop
 			if( nested ) {
 				// Copying string to remove reference
