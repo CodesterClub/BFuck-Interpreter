@@ -26,7 +26,7 @@
 // Index of loop start posn in bfuck code
 unsigned int LpIndex = 0;
 // Data array to store bfuck I/O
-signed short int data[32] = {0};
+signed int data[1024] = {0};
 // Unsigned means that range of values stored is from 0 to 2^(n-1), n is size in bits
 // Data pointer that is used to select an index from data array and operate on it.
 unsigned int ptr = 0;
@@ -86,10 +86,13 @@ void interpret( char *cmd ) {
 		else if( cmd[i] == '-' ) {
 			data[ptr]--;
 		}
-		// Work incomplete from here
 		else if( cmd[i] == '[' ) {
 			LpIndex = i;
-			int clsIndex = indexOf( cmd, ']', i + 1 ) + 1;
+			int closeIndex = indexOf( cmd, ']', i + 1 ) + 1;
+			if( data[ptr] == 0 ) {
+				i = closeIndex;
+				break;
+			}
 			// If nested bf loop
 			if( nested ) {
 				// Copying string to remove reference
@@ -98,9 +101,6 @@ void interpret( char *cmd ) {
 				}
 				cmdCOPY[j] = 0;
 				interpret( cmdCOPY );
-			}
-			if( data[ptr] == 0 ) {
-				i = clsIndex;
 			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
@@ -111,7 +111,7 @@ void interpret( char *cmd ) {
 		}
 		else if( cmd[i] == ',' ) {
 			printf( "I> " );
-			scanf( "%hd", &data[ptr] );
+			scanf( "%d", &data[ptr] );
 		}
 	} while( cmd[i++] != '\0' );
 	free( cmdCOPY );
