@@ -23,11 +23,28 @@
  * NOTE that printf ( "%s", cmd ); prints the whole string
  * BUT printf( "%c", *cmd ); only prints the 0th character
  */
+// Index of loop start posn in bfuck code
+unsigned int LpIndex = 0;
+// Data array to store bfuck I/O
+signed short int data[32] = {0};
+// Unsigned means that range of values stored is from 0 to 2^(n-1), n is size in bits
+// Data pointer that is used to select an index from data array and operate on it.
+unsigned int ptr = 0;
+// 1 if nested
+unsigned short int nested;
 int indexOf( char *cmd, char el, int from ) {
+	unsigned int braceCount = 0;
 	// Usual for loop, strlen() is 'string length'
 	for( int i = from; i < strlen( cmd ); i++) {
 		// This cmd[i] is previously explained
-		if( cmd[i] == el) {
+		if( cmd[i] == '[' ) {
+			braceCount++;
+			nested = 1;
+		}
+		else if( cmd[i] == ']' & braceCount != 0 ) {
+			braceCount--;
+		}
+		else if( cmd[i] == el & braceCount == 0 ) {
 			return i;
 		}
 	}
@@ -52,30 +69,10 @@ int input( char *cmd ) {
 	cmd[i--] = '\0';
 	return i;
 }
-int main() {
-	/*
-	 * calloc( 0, sizeof( char ) ): 0 is no. of memory blocks the string cmd will 
-	 * initially have. sizeof is NOT a function but an operator that returns in bytes 
-	 * the memory occupied by its operand. The operand may be a variable, or a data type.
-	 * The 2nd argument of calloc() is the size of each memory block.
-	 * 
-	 * calloc() automatically increases no. of memory blocks as required during runtime.
-	 * C has no new keyword. Dynamic allocation of memory is done by malloc() or calloc().
-	 */
-	// Command array that takes in the bfuck code in whole
-	char *cmd = calloc( 0, sizeof( char ) );
-	// Index of loop start posn in bfuck code
-	int LpIndex = 0;
-	// Data array to store bfuck I/O
-	signed int data[32] = {0};
-	// Unsigned means that range of values stored is from 0 to 2^(n-1), n is size in bits
-	// Data pointer that is used to select an index from data array and operate on it.
-	unsigned int ptr = 0;
+void interpret(char *cmd) {
+	char *cmdCOPY = calloc(1, sizeof( char ) );
 	// Instruction pointer traverses the cmd array
-	unsigned int i = 0;
-	// Take input using our custom function
-	input( cmd );
-	// Read bfuck rules if you don't know them.
+	unsigned int i = 0, j = i, k = j;
 	do {
 		if( cmd[i] == '<' ) {
 			ptr--;
@@ -94,6 +91,14 @@ int main() {
 			LpIndex = i;
 			if( data[ptr] == 0 ) {
 				i = indexOf( cmd, ']', i + 1 ) + 1;
+				// If nested loop
+				if( nested ) {
+					// Copying string to remove reference
+					for( j = 0, k = LpIndex; j < strlen(cmdCOPY) - 1; j++, k++ ) {
+						cmdCOPY[j] = cmd[k];
+					}
+					interpret( cmdCOPY );
+				}
 			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
@@ -104,9 +109,27 @@ int main() {
 		}
 		else if( cmd[i] == ',' ) {
 			printf( "I> " );
-			scanf( "%d", &data[ptr] );
+			scanf( "%hd", &data[ptr] );
 		}
 	} while( cmd[i++] != '\0' );
+	free( cmdCOPY );
+}
+int main() {
+	/*
+	 * calloc( 0, sizeof( char ) ): 0 is no. of memory blocks the string cmd will 
+	 * initially have. sizeof is NOT a function but an operator that returns in bytes 
+	 * the memory occupied by its operand. The operand may be a variable, or a data type.
+	 * The 2nd argument of calloc() is the size of each memory block.
+	 * 
+	 * calloc() automatically increases no. of memory blocks as required during runtime.
+	 * C has no new keyword. Dynamic allocation of memory is done by malloc() or calloc().
+	 */
+	// Command array that takes in the bfuck code in whole
+	char *cmd = calloc( 1, sizeof( char ) );
+	// Take input using our custom function
+	input( cmd );
+	// Read bfuck rules if you don't know them.
+	interpret( cmd );
 	/* 
 	 * This frees up the memory allocated by calloc().
 	 * In our case since the program ends here, free() is not necessary 
