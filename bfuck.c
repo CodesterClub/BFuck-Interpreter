@@ -69,7 +69,7 @@ int input( char *cmd ) {
 	cmd[i--] = '\0';
 	return i;
 }
-void interpret(char *cmd) {
+void interpret( char *cmd ) {
 	char *cmdCOPY = calloc(1, sizeof( char ) );
 	// Instruction pointer traverses the cmd array
 	unsigned int i = 0, j = i, k = j;
@@ -89,16 +89,18 @@ void interpret(char *cmd) {
 		// Work incomplete from here
 		else if( cmd[i] == '[' ) {
 			LpIndex = i;
-			if( data[ptr] == 0 ) {
-				i = indexOf( cmd, ']', i + 1 ) + 1;
-				// If nested loop
-				if( nested ) {
-					// Copying string to remove reference
-					for( j = 0, k = LpIndex; j < strlen(cmdCOPY) - 1; j++, k++ ) {
-						cmdCOPY[j] = cmd[k];
-					}
-					interpret( cmdCOPY );
+			int clsIndex = indexOf( cmd, ']', i + 1 ) + 1;
+			// If nested bf loop
+			if( nested ) {
+				// Copying string to remove reference
+				for( j = 0, k = LpIndex; j < i - LpIndex; j++, k++ ) {
+					cmdCOPY[j] = cmd[k];
 				}
+				cmdCOPY[j] = 0;
+				interpret( cmdCOPY );
+			}
+			if( data[ptr] == 0 ) {
+				i = clsIndex;
 			}
 		}
 		else if( cmd[i] == ']' & data[ptr] != 0 ) {
