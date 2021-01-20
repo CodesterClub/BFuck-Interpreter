@@ -70,7 +70,7 @@ int input( char *cmd ) {
 	return i;
 }
 void interpret( char *cmd ) {
-	char *cmdCOPY = calloc(1, sizeof( char ) );
+	char *cmdCOPY = calloc( 0, sizeof( char ) );
 	// Instruction pointer traverses the cmd array
 	unsigned int i = 0, j = i, k = j;
 	do {
@@ -127,7 +127,7 @@ int main() {
 	 * C has no new keyword. Dynamic allocation of memory is done by malloc() or calloc().
 	 */
 	// Command array that takes in the bfuck code in whole
-	char *cmd = calloc( 1, sizeof( char ) );
+	char *cmd = calloc( 0, sizeof( char ) );
 	// Take input using our custom function
 	input( cmd );
 	// Read bfuck rules if you don't know them.
