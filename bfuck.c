@@ -128,7 +128,7 @@ int main() {
 	 * C has no new keyword. Dynamic allocation of memory is done by malloc() or calloc().
 	 */
 	// Command array that takes in the bfuck code in whole
-	char *cmd = calloc( 0, sizeof( char ) );
+	char *cmd = calloc( 1024, sizeof( char ) );
 	// Take input using our custom function
 	input( cmd );
 	// Read bfuck rules if you don't know them.
